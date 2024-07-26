@@ -77,6 +77,7 @@ prompt3a = ChatPromptTemplate.from_messages(
 model3 = ChatVertexAI(
     model="gemini-1.5-pro-001",
     response_mime_type="application/json",
+    foo="bar",
 )
 
 parser3a = JsonOutputParser(pydantic_object=Joke)
