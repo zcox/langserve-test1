@@ -40,8 +40,7 @@ jsonschema==4.22.0
 jsonschema-specifications==2023.12.1
 langchain==0.2.6
 langchain-cli==0.0.26
-langchain-core==0.2.11
-langchain-google-vertexai==1.0.6
+langchain-google-vertexai==1.0.7
 langchain-text-splitters==0.2.2
 langserve==0.2.2
 langsmith==0.1.83
