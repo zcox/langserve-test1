@@ -74,10 +74,42 @@ prompt3a = ChatPromptTemplate.from_messages(
     ]
 )
 
-model3 = ChatVertexAI(
+# Pydantic is supposed to be able to generate JSON Schema, but it does not work here, I suspect due to the wrong version being used
+# https://docs.pydantic.dev/latest/concepts/json_schema/#generating-json-schema
+# jokeSchema = Joke.model_json_schema()
+
+model3a = ChatVertexAI(
     model="gemini-1.5-pro-001",
     response_mime_type="application/json",
-    foo="bar",
+    # response_schema={
+    #     "type": "object",
+    #     "properties": {
+    #         "explanation": {
+    #             "type": "string",
+    #             "description": "Explains why the joke is funny",
+    #         },
+    #         "joke": {
+    #             "type": "string",
+    #             "description": "The generated joke"
+    #         },
+    #         "required": ["explanation", "joke"]
+    #     },
+    # },
+)
+
+model3b = ChatVertexAI(
+    model="gemini-1.5-pro-001",
+    response_mime_type="application/json",
+    # response_schema={
+    #     "type": "object",
+    #     "properties": {
+    #         "translation": {
+    #             "type": "string",
+    #             "description": "The translated joke",
+    #         },
+    #         "required": ["translation"]
+    #     },
+    # },
 )
 
 parser3a = JsonOutputParser(pydantic_object=Joke)
@@ -91,7 +123,7 @@ prompt3b = ChatPromptTemplate.from_messages(
 
 parser3b = StrOutputParser()
 
-chain3 = prompt3a | model3 | parser3a | prompt3b | model3 | parser3b
+chain3 = prompt3a | model3a | parser3a | prompt3b | model3b| parser3b
 
 add_routes(
     app,
