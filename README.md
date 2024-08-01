@@ -16,10 +16,10 @@ poetry install
 poetry run langchain serve
 ```
 
-http://localhost:8000/docs
-http://localhost:8000/joke/playground/
-http://localhost:8000/joke2/playground/
-http://localhost:8000/joke-spanish/playground/
+- http://localhost:8000/docs
+- http://localhost:8000/joke/playground/
+- http://localhost:8000/joke2/playground/
+- http://localhost:8000/joke-spanish/playground/
 
 ```shell
 curl -s 'http://localhost:8000/joke/invoke' -H 'Content-Type: application/json' --data-raw '{"input":{"topic":"penguins"}}' | jq
